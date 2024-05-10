@@ -9,16 +9,15 @@ interface PageProps{
 
 
 const Page = async (props: PageProps) =>{
-   /*  await prisma.item.create({
+    /* await prisma.item.create({
         data:{
              text:"this is a test item",
-             listId :1
+             listId :5
         }
     }) */
     const listId = parseInt(props.params.id)
-    console.log(listId)
-    const list = await prisma.list.findUnique({where:{id:listId}})
-    
+    const list = await prisma.list.findUnique({where:{id:listId}, include:{items:true}})
+    console.log(list)
     /* The home page should contain the following :
     2 buttons : one that makes a pop up for you to add another list 
                 one that give you access to the lists that you have already created */
@@ -34,7 +33,7 @@ const Page = async (props: PageProps) =>{
     }
     else{
         return(
-            <p>The list exists with an id of {list.id} {list.label}</p>
+            <p>The list exists with an id of {list.id} {list.label} {list.items[0].text} </p>
         )
         
     }
