@@ -11,21 +11,35 @@ const AddAnItem = (props:{listId:number}) => {
       router.replace(`/lists/${props.listId}`)
       router.refresh()
     }
-    const handleSubmit=async()=>{
-        const body = {text:itemText, listId:props.listId }
-        const response = await fetch("/api/handling/items",
-         {method:"POST",
-         headers: {
-          'Content-Type': 'application/json'
-      },
-         body:JSON.stringify(body),
-        
-         }
-        );
-        const stuff = await response.json()
-        console.log(stuff)
-        refreshData()
+    const handleSubmit = async () => {
+      try {
+          // Check if itemText is empty
+          if (!itemText.trim()) {
+              // If empty, return or show an error message
+              return;
+          }
+  
+          const body = { text: itemText, listId: props.listId };
+          const response = await fetch("/api/handling/items", {
+              method: "POST",
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(body),
+          });
+  
+          if (!response.ok) {
+              throw new Error('Failed to add item');
+          }
+  
+          const stuff = await response.json();
+          console.log(stuff);
+          refreshData();
+      } catch (error) {
+          console.error(error);
+          // Handle error here, e.g., display an error message to the user
       }
+  };
       
       const handleTyping = (event: React.ChangeEvent<HTMLInputElement>)=> {
         const target = event.target as HTMLInputElement
