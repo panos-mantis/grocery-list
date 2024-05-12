@@ -1,12 +1,18 @@
-
+"use client"
 
 import { Button } from '@mui/material'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 
+
 const CreateListButton = (props:{title:string})=> {
-  
+  const router =useRouter()
+
+
   const handleSubmit=async()=>{
+
+    
 
     const response = await fetch("/api/handling/",
      {method:"POST",
@@ -17,8 +23,8 @@ const CreateListButton = (props:{title:string})=> {
     
      }
     );
-    const movies = await response.json();
-    console.log(movies)
+    const listCreated = await response.json();
+    router.push(`/lists/${listCreated.id}`)
   }
 return(
   <Button variant="outlined" onClick={handleSubmit}>Create</Button>

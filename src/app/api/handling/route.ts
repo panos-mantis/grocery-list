@@ -19,17 +19,21 @@ export const GET =async()=>{
 
  return NextResponse.json({lists})
 }
+
+
 export const POST =async(req:Request)=>{
 
  const label = await req.json()
  console.log(label)
 
- /* const potato= req.body */
+ 
  const lists= await prisma.list.create({
   data:{
     label:label
   }
  })
 
- return NextResponse.json("potato")
+ const  responseMessage = await prisma.list.findFirst({where:{label:label}}) 
+console.log(responseMessage)
+ return NextResponse.json( responseMessage)
 }

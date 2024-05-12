@@ -15,8 +15,7 @@ const Page =  async()=>{
 
   return(
     <>
-    <Stack  direction="row" spacing={2} justifyContent="center"
-  alignItems="center">
+    <Stack  direction="row" spacing={2} justifyContent="center" alignItems="center">
       <NewListModal/>
       <AutocompleteComponent lists={lists}/>
     </Stack>

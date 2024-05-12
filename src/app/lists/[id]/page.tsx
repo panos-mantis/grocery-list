@@ -1,4 +1,16 @@
-import { prisma } from "../../../../prisma/client"
+import { Stack, Typography } from "@mui/material"
+import  prisma  from "../../../../prisma/client"
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Checkbox from '@mui/material/Checkbox';
+import IconButton from '@mui/material/IconButton';
+import CommentIcon from '@mui/icons-material/Comment';
+import CheckboxList from "./List";
+import AddAnItem from "./AddanItem";
+
 
 interface PageProps{
     params:{
@@ -8,13 +20,12 @@ interface PageProps{
 
 
 
+
+
 const Page = async (props: PageProps) =>{
-    /* await prisma.item.create({
-        data:{
-             text:"this is a test item",
-             listId :5
-        }
-    }) */
+    
+    
+    
     const listId = parseInt(props.params.id)
     const list = await prisma.list.findUnique({where:{id:listId}, include:{items:true}})
     console.log(list)
@@ -33,7 +44,11 @@ const Page = async (props: PageProps) =>{
     }
     else{
         return(
-            <p>The list exists with an id of {list.id} {list.label} {list.items[0].text} </p>
+            <>
+             <Typography variant="h2">{list.label}</Typography>
+             <AddAnItem listId={listId}/>
+             <CheckboxList list={list}/>
+            </>
         )
         
     }
