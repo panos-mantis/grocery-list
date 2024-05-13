@@ -11,7 +11,7 @@ import NewListModal from "./lists/NewListModal";
 
 const Page =  async()=>{
   
-  const lists = await prisma.list.findMany({where:{label:{not:null}}})
+  const lists = await prisma.list.findMany()
 
   return(
     <>
