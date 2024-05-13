@@ -1,3 +1,6 @@
+import { Typography } from "@mui/material";
+import Image from "next/image";
+
 const Page =()=>{
 
     
@@ -6,7 +9,8 @@ const Page =()=>{
                 one that give you access to the lists that you have already created */
     return (
         <>
-        <p>ddfdfdfdf</p>
+        <Typography variant="h4" align="center">If you want to access a list you need its id or to select it from the home page</Typography>
+        <Typography  align="center" margin="normal" >For now you can chill here </Typography>
         </>
       
     );

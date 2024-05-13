@@ -13,7 +13,7 @@ const AutocompleteComponent = (props: { lists: List[] }) => {
         disablePortal
         id="auto-complete-lists"
         options={props.lists}
-        sx={{ width: 300 }}
+        sx={{ width: 400 }}
         renderInput={(params) => <TextField {...params} label="Choose an existing list" />}
         renderOption={(props, option) => (
           <li {...props} key={option.id}>

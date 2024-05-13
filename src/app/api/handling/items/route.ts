@@ -30,3 +30,13 @@ export const DELETE = async(req:Request)=>{
     /* const listWithItems = await prisma.list.findFirst({where:{id:itemId} ,include:{items:true}}) */
      return NextResponse.json( "item deleted successfully")
 }
+export const PUT = async(req:Request)=>{
+
+    const item = await req.json()
+    /* console.log(item) */
+   
+     await prisma.item.update({where:{id:item.id},data:{quantity:item.quantity},})
+     
+    /* const listWithItems = await prisma.list.findFirst({where:{id:itemId} ,include:{items:true}}) */
+     return NextResponse.json( "quality updated successfully")
+}
