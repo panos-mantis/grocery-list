@@ -1,7 +1,6 @@
 import { Metadata } from "next";
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Analytics } from "@vercel/analytics/react"
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "My Cabbages",
@@ -16,8 +15,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>{children}</body>
-      <SpeedInsights/>
-      <Analytics/>
+      <SpeedInsights />
+      <Analytics />
     </html>
   );
 }
