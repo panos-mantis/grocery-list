@@ -18,6 +18,7 @@ import EditListModal from "./EditListModal";
 import {
   createListItem,
   deleteItem,
+  quantityChange,
   toggleItem,
 } from "@/app/actions/serverActions";
 import { Button, Stack, TextField } from "@mui/material";
@@ -79,24 +80,12 @@ export default function CheckboxList(props: { list: ListTypeWithRelations }) {
   };
 
   const handleQuantityChange = async (itemId: number, value: number) => {
-    try {
-      const response = await fetch("/api/handling/items", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id: itemId, quantity: value }),
-      });
-      const updatedItem = await response.json();
-      const updatedItems = props.list.items.map((item) =>
-        item.id === updatedItem.id
-          ? { ...item, quantity: updatedItem.quantity }
-          : item
-      );
-      props.list.items = updatedItems;
-    } catch (error) {
-      console.error("Error updating quantity:", error);
-    }
+    quantityChange(itemId, value);
+    const updatedItems = items.map((item) =>
+      item.id === itemId ? { ...item, quantity: value } : item
+    );
+    console.log(updatedItems);
+    setItems(updatedItems);
   };
 
   return (

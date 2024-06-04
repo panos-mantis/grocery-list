@@ -38,3 +38,10 @@ export async function deleteItem(id: number) {
   await prisma.item.delete({ where: { id: id } });
   console.log("deleted");
 }
+
+export async function quantityChange(id: number, value: number) {
+  await prisma.item.update({
+    where: { id: id },
+    data: { quantity: value },
+  });
+}
