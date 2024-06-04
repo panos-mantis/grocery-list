@@ -69,10 +69,13 @@ export default function CheckboxList(props: { list: ListTypeWithRelations }) {
   };
 
   const handleItemDelete = async (id: number) => {
-    const updatedItems = items.filter((item) => item.id !== id);
-    console.log(updatedItems);
-    setItems(updatedItems);
-    deleteItem(id);
+    const isConfirmed = confirm("are you sure you want to delete this item ?");
+    if (isConfirmed) {
+      const updatedItems = items.filter((item) => item.id !== id);
+      console.log(updatedItems);
+      setItems(updatedItems);
+      deleteItem(id);
+    }
   };
 
   const handleQuantityChange = async (itemId: number, value: number) => {
